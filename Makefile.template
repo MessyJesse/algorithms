@@ -1,0 +1,12 @@
+CC=gcc
+CFLAGS=-I../
+DEPS=
+OBJ=
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+test: $(OBJ)
+	gcc -o $@ $^ $(CFLAGS)
+
+clean:
+	rm test *.o
