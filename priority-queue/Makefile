@@ -1,5 +1,13 @@
-test: priority_queue.c test.c
-	gcc priority_queue.c test.c -o test -Wall -Wextra -g -I../
+CC=gcc
+CFLAGS=-I../ -Wall -Wextra
+DEPS=priority_queue.h
+OBJ=test.o priority_queue.o
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+test: $(OBJ)
+	gcc -o $@ $^ $(CFLAGS) -g
 
 clean:
-	rm test
+	rm test *.o
