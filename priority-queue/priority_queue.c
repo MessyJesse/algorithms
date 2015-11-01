@@ -142,6 +142,17 @@ void *pq_remove(struct pq *queue)
     queue->num_obj--;
     pq_bubble_down(queue, 1);
 
+    if (queue->max_num_obj > 3 * queue->num_obj) {
+        void **new_queue = realloc(queue->queue, queue->size / 2);
+
+        if (new_queue) {
+            queue->size = queue->size / 2;
+            queue->queue = new_queue;
+            //The first element in the heap is at index 1 in the array
+            queue->max_num_obj = queue->size / sizeof(void *) - 1;
+        }
+    }
+
     return ret;
 }
 
