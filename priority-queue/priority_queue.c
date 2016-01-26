@@ -1,6 +1,8 @@
 #include "stdlib.h"
 #include "priority_queue.h"
 
+//TODO: These functions are programmed recursively how does the gcc compiler
+//handle this? Will we blow out stack?
 struct pq {
     unsigned int num_obj;
     unsigned int max_num_obj;
